@@ -151,9 +151,7 @@ type server struct {
 // handler handles client requests
 func (s *server) handler() http.Handler {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", s.handleIndex)
-	mux.HandleFunc("/evaluate", s.handleEvaluate)
-	mux.HandleFunc("/config", s.handleConfig)
+	mux.HandleFunc("/api/query", s.handleEvaluate)
 	return mux
 }
 
