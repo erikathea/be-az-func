@@ -38,7 +38,9 @@ func newKVStore(db *sql.DB) (*kvStore, error) {
 		id TEXT,
 		value BYTEA,
 		PRIMARY KEY (id, value)
-	);`
+	);
+	CREATE INDEX IF NOT EXISTS kv_store_shadow_values ON kv_store_shadow (value);
+	`
 	_, err := db.Exec(query)
 	if err != nil {
 		return nil, err
